@@ -1607,7 +1607,7 @@ void upward_reversal_feature_model(bool on, int start, int end, int mode)
 	double tmp, max, min, para;
 	int stochastic_max_price, stochastic_min_price;
 
-	pPrintfDlg->printf2("upward_reversal_feature_model ¼öÇà ½ÃÀÛ...");
+	pPrintfDlg->printf2("upward_reversal_feature_model start...");
 
 	int dist[57] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 		11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -1620,7 +1620,7 @@ void upward_reversal_feature_model(bool on, int start, int end, int mode)
 		18, 21, 24, 27, 30, 34, 38, 42, 46, 50,
 		55, 60, 65, 70, 75, 80, 85, 90, 95 };
 
-	pPrintfDlg->printf2("make_new_feature_engine() ¼öÇà ½ÃÀÛ...");
+	pPrintfDlg->printf2("make_new_feature_engine() start...");
 
 	for (int i = 0; i < my_stock_count; i++) {
 
@@ -2028,7 +2028,7 @@ UINT TensorflowInputGeneratingThreadMain(LPVOID lParam)
 	
 	strcpy_s(fname, "\\DBupdate\\");
 	strcat_s(fname, Dates[0]);
-	strcat_s(fname, "-ÄÚ½ºÇÇ.csv");
+	strcat_s(fname, "-ì½”ìŠ¤í”¼.csv");
 
 	ret = fopen_s(&p_file, fname, "r");
 	if (ret != S_OK) {
@@ -2079,16 +2079,16 @@ UINT TensorflowInputGeneratingThreadMain(LPVOID lParam)
 		::strcpy(cc, cs.GetBuffer());
 		high[stock_count] = atoi(cc);
 
-		cs = Row.GetAt(11);		// Àú°¡
+		cs = Row.GetAt(11);		
 		::strcpy(cc, cs.GetBuffer());
 		low[stock_count] = atoi(cc);		//low
 
 		stock_count++;
-	pPrintfDlg->printf2("%s ÀÐ±â ¿Ï·á", fname); 
+	pPrintfDlg->printf2("%s reading complete", fname); 
 
 	strcpy_s(fname, "\\DBupdate\\");
 	strcat_s(fname, Dates[0]);
-	strcat_s(fname, "-ÄÚ½º´Ú.csv");
+	strcat_s(fname, "-KOSDAQ.csv");
 
 	ret = fopen_s(&p_file, fname, "r");
 	if (ret != S_OK) {
@@ -2184,10 +2184,10 @@ UINT TensorflowInputGeneratingThreadMain(LPVOID lParam)
 
 	fclose(p_file);
 
-	// ÄÚ½º´Ú µðºñ¸¦ ÀÐ´Â´Ù.
+	// READING KOSDAQ DB
 	strcpy_s(fname, "\\DBupdate\\");
 	strcat_s(fname, Dates[0]);
-	strcat_s(fname, "-ÄÚ½º´Ú.csv");
+	strcat_s(fname, "-KOSDAQ.csv");
 
 	ret = fopen_s(&p_file, fname, "r");
 	if (ret != S_OK) {
@@ -2268,7 +2268,7 @@ UINT TensorflowInputGeneratingThreadMain(LPVOID lParam)
 		char tmp[100];
 		char a[30], b[30], c[30], d[30], e[30], f[30];
 
-		strcpy_s(tmp, "\\Works\\NNshell¹ÙÀÌ³Ê¸®\\Àç¿øTXTµðºñ\\StockDB\\");	
+		strcpy_s(tmp, "\\StockDB\\");	
 		strcat_s(tmp, 100, my_stock_code[i]);
 		strcat_s(tmp, 100, ".txt");
 
@@ -2410,7 +2410,7 @@ UINT TensorflowInputGeneratingThreadMain(LPVOID lParam)
 	}
 	pPrintfDlg->printf2("done!");
 
-	pPrintfDlg->printf2("ÀÌÁ¦ °¢Á¾ ÇÇÃÄµéÀ» °è»êÇÕ´Ï´Ù...");
+	pPrintfDlg->printf2("calcuating featrues...");
 
 	calculate_indicators(0, my_stock_count);
 	calculate_global_scores(0, my_stock_count);
